@@ -10,7 +10,8 @@ membership on-chain — no off-chain allowlist to trust.
 - [x] Project scaffold (Foundry, src/test/script layout, CI)
 - [x] Membership token + tier registry (tiers by minimum balance)
 - [x] Gated access checks (content/perk eligibility) + tier management + pausing
-- [ ] Invariant fuzz tests + gas report, then self-review checklist, then public
+- [x] Invariant fuzz tests + gas report (256 runs, 0 reverts, see `docs/gas-report.md`)
+- [ ] Self-review checklist, then public
 
 ## How it works
 
@@ -69,10 +70,13 @@ manage tiers/channels from the same account.
 
 ## Tests
 
-21 Foundry tests: token mint/transfer/approve/burn and revert cases,
+25 Foundry tests: token mint/transfer/approve/burn and revert cases,
 tier resolution (including out-of-order tiers, deactivation, re-thresholding),
 and channel gating (threshold posts, non-members, empty posts, deactivated
-channels, pause behaviour).
+channels, pause behaviour). Plus 4 invariant fuzz tests (256 runs, depth 100,
+0 reverts): token supply always equals actor balances, `tierOf` always returns
+the highest active qualified tier, channel listings always partition the post
+log, and `checkAccess` always matches the balance comparison.
 
 ## License
 
