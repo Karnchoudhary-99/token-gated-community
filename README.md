@@ -11,7 +11,7 @@ membership on-chain — no off-chain allowlist to trust.
 - [x] Membership token + tier registry (tiers by minimum balance)
 - [x] Gated access checks (content/perk eligibility) + tier management + pausing
 - [x] Invariant fuzz tests + gas report (256 runs, 0 reverts, see `docs/gas-report.md`)
-- [ ] Self-review checklist, then public
+- [x] Self-review checklist, then public
 
 ## How it works
 
