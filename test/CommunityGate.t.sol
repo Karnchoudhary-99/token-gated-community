@@ -70,9 +70,10 @@ contract CommunityGateTierTest is Test {
 
         vm.prank(admin);
         gate.updateTier(tierId, "Silver", 10 ether);
-        (hasTier,, string memory name) = gate.tierOf(alice);
-        assertTrue(hasTier);
-        assertEq(name, "Silver");
+        (bool hasTierAfter, uint256 tierIdAfter, string memory nameAfter) = gate.tierOf(alice);
+        assertTrue(tierIdAfter == tierId);
+        assertTrue(hasTierAfter);
+        assertEq(nameAfter, "Silver");
     }
 
     function testCheckAccess() public {
